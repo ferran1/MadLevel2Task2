@@ -27,7 +27,7 @@ class QuestionAdapter(private val questions: List<Question>)
     // ViewHolder innerclass
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(question: Question) {
-            itemView.tvQuestion.text = question.text
+            itemView.tvQuestion.text = question.question
         }
     }
 
