@@ -4,34 +4,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.madlevel2task2.databinding.ActivityMainBinding
-import com.example.madlevel2task2.databinding.ItemQuestionBinding
+import kotlinx.android.synthetic.main.item_question.view.*
 
-class QuestionAdapter(
+class QuestionAdapter(private val questions: List<Question>)
+    : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
 
-    private val questions: ArrayList<Question>
-
-) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionAdapter.ViewHolder {
-        TODO("Not yet implemented")
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_question, parent, false)
+        )
     }
 
-    override fun onBindViewHolder(holder: QuestionAdapter.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(questions[position])
     }
 
+    // Returns the number of places in the list
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return questions.size
     }
 
     // ViewHolder innerclass
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val binding = ItemQuestionBinding.bind(itemView)
-
-        fun databind(question: Question) {
-            binding.tvQuestion.text = question.name
+        fun bind(question: Question) {
+            itemView.tvQuestion.text = question.text
         }
     }
 
